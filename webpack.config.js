@@ -35,11 +35,23 @@ module.exports = options => {
         },
         plugins: [
             new webpack.HotModuleReplacementPlugin(),
-            new webpack.WatchIgnorePlugin([/\.js$/, /\.d\.ts$/])
+            new webpack.WatchIgnorePlugin([/\.js$/, /\.d\.ts$/]),
+            new copyWebpackPlugin({
+                patterns: [
+                    {
+                        from: "package.json",
+                        to: ".",
+                    },
+                    {
+                        from: ".env",
+                        to: ".",
+                    },
+                ],
+            }),
         ],
         output: {
-            path: path.join(__dirname, 'build'),
-            filename: 'app.js',
+            path: path.join(__dirname, 'dist'),
+            filename: 'index.js',
         },
     }
 }

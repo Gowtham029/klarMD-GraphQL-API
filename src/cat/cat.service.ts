@@ -21,12 +21,10 @@ export class CatService {
   }
 
   getById(_id: Types.ObjectId) {
-    console.log(_id)
     return this.catModel.findById(_id).exec();
   }
 
   list(filters: ListCatInput) {
-    console.log("IN SERVICE")
     return this.catModel.find({ ...filters }).exec();
   }
 

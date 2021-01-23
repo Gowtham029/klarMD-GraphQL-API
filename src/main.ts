@@ -1,19 +1,16 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
-import { GlobalExceptionFilter } from "./common/filters/exception.filters";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     const PORT = process.env.PORT || 3000;
 
-    app.useGlobalFilters(new GlobalExceptionFilter());
-
     const options = new DocumentBuilder()
-        .setTitle("Boiler Plate")
-        .setDescription("The Boiler Plate API description")
+        .setTitle("klarMD GraphQL API")
+        .setDescription("klarMD GraphQL API")
         .setVersion("1.0")
-        .addTag("BoilerPlate")
+        .addTag("klarMD GraphQL API")
         .addBearerAuth()
         .build();
     const document = SwaggerModule.createDocument(app, options);
