@@ -39,7 +39,7 @@
     "rxjs": "^6.5.4",
     "swagger-ui-express": "^4.1.4",
     "webpack": "^4.43.0",
-    "webpack-node-externals": "^1.7.2",
+    "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",
