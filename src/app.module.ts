@@ -1,6 +1,7 @@
 import { Module, MiddlewareConsumer, RequestMethod } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { MongooseModule } from "@nestjs/mongoose";
+import { join } from "path";
 
 import { AppController } from "./app.controller";
 import { AuthMiddleware } from "./common/middlewares/auth/auth.middleware";
@@ -11,6 +12,8 @@ import { UserModule } from "./modules/users/user.module";
 import { APP_PIPE } from "@nestjs/core";
 import { ValidationPipe } from "./common/pipes/validation.pipe";
 import { LoginModule } from "./modules/login/login.module";
+import { GraphQLModule } from "@nestjs/graphql";
+import { CatModule } from "./cat/cat.module";
 
 @Module({
     imports: [
@@ -22,21 +25,28 @@ import { LoginModule } from "./modules/login/login.module";
             "mongodb+srv://boilerplate:dtHDZjOYUY6ZRGHQ@cluster0-ubr7a.mongodb.net/boiler-plate?retryWrites=true&w=majority",
             { useCreateIndex: true, useNewUrlParser: true },
         ),
-        AuthModule,
-        LoggerModule,
-        UserModule,
-        LoginModule,
+        GraphQLModule.forRoot({
+            autoSchemaFile: join(process.cwd(), "src/schema.gql"),
+            sortSchema: true,
+            playground: true,
+            debug: false,
+        }),
+        CatModule,
+        // AuthModule,
+        // LoggerModule,
+        // UserModule,
+        // LoginModule,
     ],
     controllers: [AppController],
     providers: [
-        GlobalExceptionFilter,
-        { provide: APP_PIPE, useClass: ValidationPipe },
+        // GlobalExceptionFilter,
+        // { provide: APP_PIPE, useClass: ValidationPipe },
     ],
 })
 export class AppModule {
-    configure(consumer: MiddlewareConsumer): void {
-        consumer
-            .apply(AuthMiddleware)
-            .forRoutes({ path: "*", method: RequestMethod.ALL });
-    }
+    // configure(consumer: MiddlewareConsumer): void {
+    //     consumer
+    //         .apply(AuthMiddleware)
+    //         .forRoutes({ path: "*", method: RequestMethod.ALL });
+    // }
 }

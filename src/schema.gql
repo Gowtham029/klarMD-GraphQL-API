@@ -1,0 +1,33 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Cat {
+  _id: String!
+  name: String!
+}
+
+input CreateCatInput {
+  name: String!
+}
+
+input ListCatInput {
+  _id: String
+  name: String
+}
+
+type Mutation {
+  createCat(payload: CreateCatInput!): Cat!
+  deleteCat(_id: String!): Cat!
+  updateCat(payload: UpdateCatInput!): Cat!
+}
+
+type Query {
+  cat(_id: String!): Cat!
+  cats(filters: ListCatInput): [Cat!]!
+}
+
+input UpdateCatInput {
+  _id: String!
+  name: String
+}
