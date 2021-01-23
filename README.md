@@ -29,3 +29,14 @@ docker build . -t starter-api
 ```
 docker run -p <port>:<port> -d --name starter-api starter-api
 ```
+
+## Access in the Browser
+
+GraphQL
+```
+http://localhost:8080/graphql
+```
+Swagger
+```
+http://localhost:8080/api-docs/
+```
